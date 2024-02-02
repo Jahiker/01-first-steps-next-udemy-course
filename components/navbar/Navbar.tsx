@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { HomeIcon } from "@primer/octicons-react";
-import path from "path";
+import ActiveLink from "../active-link/ActiveLink";
 
-const navItems = [
+export interface LinkItem {
+  path: string;
+  text: string;
+}
+
+const navItems: LinkItem[] = [
   { path: "/about", text: "About" },
   { path: "/pricing", text: "Pricing" },
   { path: "/contact", text: "Contact" },
@@ -18,10 +23,8 @@ export const Navbar = () => {
 
       <div className="flex flex-1"></div>
 
-      {navItems.map((item) => (
-        <Link key={item.path} className="mr-2" href={item.path}>
-          {item.text}
-        </Link>
+      {navItems.map((item: LinkItem) => (
+        <ActiveLink key={item.path} {...item} />
       ))}
     </nav>
   );
